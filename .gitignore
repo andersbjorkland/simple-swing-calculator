@@ -1,0 +1,6 @@
+###> IDE settings ###
+/.idea/
+simple-swing-calculator.iml
+###< IDE settings ###
+# Project exclude paths
+/out/
