@@ -8,23 +8,24 @@ public class Calculator extends JFrame {
     private List<Double> memory;
     private double inputValue1;
     private double inputValue2;
-    JTextField sumDisplay;
-    private final int INPUT1 = 1;
-    private final int INPUT2 = 2;
+    public final int INPUT1 = 1;
+    public final int INPUT2 = 2;
     private int latestInputTo = INPUT2;
     private boolean firstComboBoxUpdate = true;
 
     // GUI Components
-    private final Container contentPane;
-    JTextArea input1;
-    JTextArea input2;
-    JLabel operationLabel;
-    JButton additionButton;
-    JButton subtractionButton;
-    JButton multiplicationButton;
-    JButton divisionButton;
-    JButton equalsButton;
-    JComboBox<Double> memoryBox;
+    private Container contentPane;
+    private JTextArea input1;
+    private JTextArea input2;
+    private JLabel operationLabel;
+    private JButton additionButton;
+    private JButton subtractionButton;
+    private JButton multiplicationButton;
+    private JButton divisionButton;
+    private JButton equalsButton;
+    private JComboBox<Double> memoryBox;
+    private JTextField sumDisplay;
+
 
     public Calculator() throws HeadlessException {
         super("Simple Swing Calculator");
@@ -50,18 +51,10 @@ public class Calculator extends JFrame {
 
 
         // Add actions to components
-        additionButton.addActionListener(event -> {
-            operationLabel.setText("+");
-        });
-        subtractionButton.addActionListener(event -> {
-            operationLabel.setText("-");
-        });
-        multiplicationButton.addActionListener(event -> {
-            operationLabel.setText("×");
-        });
-        divisionButton.addActionListener(event -> {
-            operationLabel.setText("÷");
-        });
+        additionButton.addActionListener(event -> operationLabel.setText("+"));
+        subtractionButton.addActionListener(event -> operationLabel.setText("-"));
+        multiplicationButton.addActionListener(event -> operationLabel.setText("×"));
+        divisionButton.addActionListener(event -> operationLabel.setText("÷"));
         equalsButton.addActionListener(event -> {
             if (parseInputs()) {
                 sum = calculateResult(operationLabel.getText(), inputValue1, inputValue2);
@@ -72,8 +65,8 @@ public class Calculator extends JFrame {
         });
 
         memoryBox.addActionListener(event -> {
-            if (!firstComboBoxUpdate && memoryBox.getItemCount() > 0) {
-                double selectedValue = (Double) memoryBox.getSelectedItem();
+            if (!firstComboBoxUpdate) {
+                Double selectedValue = (Double) memoryBox.getSelectedItem();
                 JTextArea targetArea;
                 if (input1.getText().length() == 0) {
                     targetArea = input1;
@@ -90,7 +83,7 @@ public class Calculator extends JFrame {
                 }
                 targetArea.setText(String.valueOf(selectedValue));
             }
-            firstComboBoxUpdate = false;
+                firstComboBoxUpdate = false;
         });
 
         // Adjust components presentation
@@ -119,7 +112,7 @@ public class Calculator extends JFrame {
         setVisible(true);
     }
 
-    protected boolean parseInputs() {
+    private boolean parseInputs() {
         boolean hasInput = (input1.getText().length() > 0 && input2.getText().length() > 0);
         boolean hasCorrectInput = false;
 
@@ -135,13 +128,8 @@ public class Calculator extends JFrame {
         return hasCorrectInput;
     }
 
-    protected void resetInputs() {
-        input1.setText("");
-        input2.setText("");
-    }
-
-    protected double calculateResult(String operation, double value1, double value2) {
-        double sum = 0;
+    private double calculateResult(String operation, double value1, double value2) {
+        double sum;
         switch (operation) {
             case "-" -> sum = value1 - value2;
             case "×" -> sum = value1 * value2;
