@@ -106,7 +106,10 @@ public class Calculator extends JFrame {
         contentPane.add(memoryBox);
 
         // Set some basic window behavior
-        contentPane.setLayout(new FlowLayout());
+        FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT, 10, 20);
+
+        contentPane.setLayout(flowLayout);
+        contentPane.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         pack();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
