@@ -93,20 +93,24 @@ public class Calculator extends JFrame {
         memoryBox.setPrototypeDisplayValue(0.00001);
         memoryBox.setEditable(false);
 
+        // Set layout manager
+        BorderLayout borderLayout = new BorderLayout();
+        contentPane.setLayout(borderLayout);
+
         // Add components to contentPane
-        contentPane.add(input1);
-        contentPane.add(operationLabel);
-        contentPane.add(input2);
-        contentPane.add(sumDisplay);
+        contentPane.add(input1, BorderLayout.WEST);
+        contentPane.add(operationLabel, BorderLayout.NORTH);
+        contentPane.add(input2, BorderLayout.EAST);
+        contentPane.add(sumDisplay, BorderLayout.CENTER);
         contentPane.add(additionButton);
         contentPane.add(subtractionButton);
         contentPane.add(multiplicationButton);
         contentPane.add(divisionButton);
-        contentPane.add(equalsButton);
+        contentPane.add(equalsButton, BorderLayout.SOUTH);
         contentPane.add(memoryBox);
 
         // Set some basic window behavior
-        contentPane.setLayout(new FlowLayout());
+
         pack();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
