@@ -93,24 +93,34 @@ public class Calculator extends JFrame {
         memoryBox.setPrototypeDisplayValue(0.00001);
         memoryBox.setEditable(false);
 
-        // Set layout manager
+        // Set top level layout
         BorderLayout borderLayout = new BorderLayout();
         contentPane.setLayout(borderLayout);
 
-        // Add components to contentPane
-        contentPane.add(input1, BorderLayout.WEST);
-        contentPane.add(operationLabel, BorderLayout.NORTH);
-        contentPane.add(input2, BorderLayout.EAST);
-        contentPane.add(sumDisplay, BorderLayout.CENTER);
-        contentPane.add(additionButton);
-        contentPane.add(subtractionButton);
-        contentPane.add(multiplicationButton);
-        contentPane.add(divisionButton);
-        contentPane.add(equalsButton, BorderLayout.SOUTH);
-        contentPane.add(memoryBox);
+        // Add containers to go inside the borderLayout.
+        JPanel flowPane1 = new JPanel(); // FlowLayout by default
+        JPanel flowPane2 = new JPanel(); // FlowLayout by default
+        GridLayout centerGrid = new GridLayout(0, 2);
+        JPanel gridPane = new JPanel(centerGrid);
+
+        // Add components to each container
+        flowPane1.add(input1);
+        flowPane1.add(operationLabel);
+        flowPane1.add(input2);
+        gridPane.add(additionButton);
+        gridPane.add(subtractionButton);
+        gridPane.add(multiplicationButton);
+        gridPane.add(divisionButton);
+        gridPane.add(equalsButton);
+        flowPane2.add(sumDisplay);
+        flowPane2.add(memoryBox);
+
+        // Add containers into the top level container
+        contentPane.add(flowPane1, BorderLayout.NORTH);
+        contentPane.add(gridPane, BorderLayout.CENTER);
+        contentPane.add(flowPane2, BorderLayout.SOUTH);
 
         // Set some basic window behavior
-
         pack();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
