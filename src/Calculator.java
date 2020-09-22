@@ -106,7 +106,13 @@ public class Calculator extends JFrame {
         contentPane.add(memoryBox);
 
         // Set some basic window behavior
-        contentPane.setLayout(new FlowLayout());
+        int rows = 0; // wildcard value to allow for expanding in this dimension.
+        int columns = 4;
+        int hgap = 10;
+        int vgap = 10;
+        GridLayout gridLayout = new GridLayout(rows, columns, hgap, vgap);
+
+        contentPane.setLayout(gridLayout);
         pack();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
